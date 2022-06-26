@@ -18,19 +18,6 @@ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/dock
 sudo yum install -y docker-ce-19.03.12 
 sudo systemctl enable --now docker
 
-
-sudo firewall-cmd --permanent --add-port=6443/tcp
-sudo firewall-cmd --permanent --add-port=2379-2380/tcp
-sudo firewall-cmd --permanent --add-port=10250/tcp
-sudo firewall-cmd --permanent --add-port=10251/tcp
-sudo firewall-cmd --permanent --add-port=10252/tcp
-sudo firewall-cmd --permanent --add-port=10255/tcp
-sudo firewall-cmd --reload
-
-sudo firewall-cmd --permanent --add-port=10251/tcp
-sudo firewall-cmd --permanent --add-port=10255/tcp
-firewall-cmd --reload
-
 sudo sh -c 'cat <<EOF > /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
