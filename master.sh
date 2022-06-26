@@ -1,7 +1,5 @@
-sudo yum --disablerepo=kubernetes ...
-sudo  yum-config-manager --disable kubernetes
-sudo yum-config-manager --save --setopt=kubernetes.skip_if_unavailable=true
-sudo yum install -y kubeadm-1.18.5-0 kubelet-1.18.5-0 kubectl-1.18.5-0
-sudo systemctl enable --now kubelet
 sudo kubeadm init --ignore-preflight-errors=all
 sudo kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://docs.projectcalico.org/v3.14/manifests/calico.yaml
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
