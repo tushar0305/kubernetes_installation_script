@@ -2,14 +2,11 @@
 # === All Systems === #
 #######################
 # Ensure system is fully patched
-sudo yum -y makecache fast
 sudo yum -y update
 
 # Disable swap
-sudo swapoff -a
-
-# comment out swap mount in /etc/fstab
-sudo vi /etc/fstab
+sudo swapoff -a; sed -i '/swap/d' /etc/fstab
+sudo sed -i --follow-symlinks 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/sysconfig/selinux
 
 # Disable default iptables configuration as it will break kubernetes services (API, coredns, etc...)
 sudo sh -c "cp /etc/sysconfig/iptables /etc/sysconfig/iptables.ORIG && iptables --flush && iptables --flush && iptables-save > /etc/sysconfig/iptables"
