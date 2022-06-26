@@ -1,3 +1,6 @@
+sudo yum --disablerepo=kubernetes ...
+sudo  yum-config-manager --disable kubernetes
+sudo yum-config-manager --save --setopt=kubernetes.skip_if_unavailable=true
 sudo yum install -y kubeadm-1.18.5-0 kubelet-1.18.5-0 kubectl-1.18.5-0
 sudo systemctl enable --now kubelet
 sudo kubeadm init --ignore-preflight-errors=all
